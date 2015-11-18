@@ -2,27 +2,70 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <link id="link1" rel="stylesheet" href="css1.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <style> 
+        td {width:30px;height:30px;}
+        .highlighted {background:yellow;font-size:align-content;}
+      
+      
+      
+    </style>
 </head>
 <body>
-    <div id="div1"><h1>Welcome to my person blog!</h1></div>
-    <div id="div2"><button id="btn1">change skin</button></div>
+    
+    <h3>Please Input the Grid Size </h3>
+    <input id="ip1" type="number" />
+    <div id="div1" style="width:100px;height:100;background:yellow"></div>
+    <table id="tb1" border="1px solid">
+    
+    
+    </table>
+    
     <script>
-      var oBtn = document.getElementById('btn1');
-      var oLink = document.getElementById('link1');
-      oBtn.onclick=function(){
-              //console.log(oLink.href);
-              if(oLink.href.endsWith('css1.css')) 
-            //debug: if oLink.href=="css1.css",because 
-            //oLink.href is the string of the complete path.
-              {
+    jQuery(document).ready(function(){
+           
+        var $input = $("#ip1");
+        var $table = $("#tb1");
+        var count =0;
+        $input.on('change',function(){
+            
+         $("#tb1 tr").remove();
+         $("body p").remove();
+         
+            
+         var n = parseInt($input.val());
+         count++;
+         $('#div1').append($("<p>haha "+count+"</p>"));
+            
+         console.log(n);
 
-                oLink.href="css2.css";
-              }else{
-                oLink.href="css1.css";
-              }
-      };
+         console.log("111111");
+         for(i=0;i<n;i++){
+             console.log(i);
+             var $tr=$("<tr></tr>");
+             $table.append($tr);
+             for(j=0;j<n;j++){
+                console.log(j);
+                $tr.append($("<td>"+(i*n+j+1)+"</td>"));
+            }
+            
+         }
+        });
+    
+        
+        //event delegation
+        $table.on( "click", "td", function( event ) {
+            console.log("2222");
+            event.preventDefault();
+            console.log($(this).text());// or this.innerHTML,no $ sigh
+            $('td').removeClass("highlighted");
+            $(this).addClass("highlighted");
+            $table.after($("<p style='background:purple'>"+$(this).text()+"</p>"));
+            
+        });
+           
+    });
       
-      </script>
+    </script>
   </body>
 </html>
