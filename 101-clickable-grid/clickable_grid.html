@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link id="link1" rel="stylesheet" href="css1.css"/>
+</head>
+<body>
+    <div id="div1"><h1>Welcome to my person blog!</h1></div>
+    <div id="div2"><button id="btn1">change skin</button></div>
+    <script>
+      var oBtn = document.getElementById('btn1');
+      var oLink = document.getElementById('link1');
+      oBtn.onclick=function(){
+              //console.log(oLink.href);
+              if(oLink.href.endsWith('css1.css')) 
+            //debug: if oLink.href=="css1.css",because 
+            //oLink.href is the string of the complete path.
+              {
+
+                oLink.href="css2.css";
+              }else{
+                oLink.href="css1.css";
+              }
+      };
+      
+      </script>
+  </body>
+</html>
